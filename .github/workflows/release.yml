@@ -1,5 +1,7 @@
 name: Build and Release
 on:
+  # - push
+  # - pull_request
   workflow_dispatch:
   push:
     branches:
@@ -18,16 +20,23 @@ jobs:
       - name: Github checkout
         uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 9
+          run_install: false
+
+      - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # 确保使用与项目兼容的 Node.js 版本
+          node-version: 'latest'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm i --force ## npm ci
+        run: pnpm i --force ## npm ci
 
       - name: Package Electron app
-        run: npm run package
+        run: pnpm run package
       - name: Show Package files location
         run: ls -R out/make && ls -R out # 根据你的输出目录调整路径
       # abacefty123li
