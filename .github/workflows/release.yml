@@ -36,7 +36,7 @@ jobs:
           path: out/make/* # 根据你的输出目录调整路径
 
       - name: Download Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: ${{ matrix.os }}-build
           path: ./artifacts      
