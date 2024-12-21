@@ -33,10 +33,10 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm i --force ## npm ci
+        run: npm i --force ## npm ci
 
       - name: Package Electron app
-        run: pnpm run package
+        run: npm run package
       - name: Show Package files location
         run: ls -R out/make && ls -R out # 根据你的输出目录调整路径
       # abacefty123li
@@ -71,8 +71,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
-     
-
+    
       # - name: Upload Release Assets
       #   uses: actions/upload-release-asset@v1
       #   env:
